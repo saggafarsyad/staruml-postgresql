@@ -64,6 +64,36 @@
       "description": "Number of spaces for indentation.",
       "type": "number",
       "default": 4
+    },
+    "psqlddl.gen.procedureTag": {
+      "text": "Procedure tag",
+      "description": "Value of the tag to link the PROCEDURE.",
+      "type": "string",
+      "default": "PROCEDURE"
+    },
+    "psqlddl.gen.functionTag": {
+      "text": "Function tag",
+      "description": "Value of the tag to link the FUNCTION.",
+      "type": "string",
+      "default": "FUNCTION"
+    },
+    "psqlddl.gen.triggerTag": {
+      "text": "Trigger tag",
+      "description": "Value of the tag to link the TRIGGER.",
+      "type": "string",
+      "default": "TRIGGER"
+    },
+    "psqlddl.gen.singleFile": {
+      "text": "Generate single file",
+      "description": "Generate a single script file, rathern than multiple ?",
+      "type": "check",
+      "default": false
+    },
+    "psqlddl.gen.dropStatements": {
+      "text": "DROP statements",
+      "description": "Create DROP statements ?",
+      "type": "check",
+      "default": true
     }
   }
 }
