@@ -11,6 +11,13 @@
         "email": "adrian.andrei.ca@gmail.com",
         "url": "https://github.com/adrianandrei-ca"
     },
+    "contributors" : [
+        {
+            "name": "Florentin Vintila",
+            "email": "florentin.vintila@gmail.com",
+            "url": "https://github.com/florentinvintila"
+        }
+    ],
     "license": "MIT",
     "engines": {
         "staruml": ">=3.0.0"
