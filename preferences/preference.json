@@ -94,6 +94,12 @@
       "description": "Create DROP statements ?",
       "type": "check",
       "default": true
+    },
+    "psqlddl.gen.tableInserts": {
+      "text": "Entity description as insert data",
+      "description": "Use entity description as insert data ?",
+      "type": "check",
+      "default": true
     }
   }
 }

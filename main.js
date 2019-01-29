@@ -37,6 +37,7 @@ function getGenOptions() {
     trigger: app.preferences.get('psqlddl.gen.triggerTag'),
     singleFile: app.preferences.get('psqlddl.gen.singleFile'),
     dropStatements: app.preferences.get('psqlddl.gen.dropStatements'),
+    tableInserts: app.preferences.get('psqlddl.gen.tableInserts'),
   };
 }
 

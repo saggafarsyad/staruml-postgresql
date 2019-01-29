@@ -402,7 +402,7 @@ class DDLGenerator {
 		self.writeUserIndexes(codeWriter, table, elem, options);
 
 		var documentation = elem.documentation;
-		if (!!documentation) {
+		if (!!documentation && !options.tableInserts) {
 			codeWriter.writeLine("COMMENT ON TABLE " + table);
 			codeWriter.indent();
 			codeWriter.writeLine("IS " + codegen.asComment(documentation) + ";");
@@ -415,7 +415,7 @@ class DDLGenerator {
 			codeWriter.outdent();
 		});
 
-		//generate indexes
+		//generate triggers
 		var len = elem.tags.length;
 		for (var i = 0; i < len; i++) {
 			var t = elem.tags[i];
@@ -427,13 +427,48 @@ class DDLGenerator {
 				t.reference.reference.name == options.trigger
 			) {
 				codeWriter.writeLine(
-					"CREATE TRIGGER " + table + "_" + self.routineName(t) + "  " + t.reference.value + " ON " + table
+					"CREATE TRIGGER " + tableName + "_" + self.routineName(t) + "  " + t.reference.value + " ON " + table
 				);
 				codeWriter.indent();
 				codeWriter.writeLine(t.value);
 				codeWriter.writeLine();
 				codeWriter.writeLine();
 				codeWriter.outdent();
+			}
+		}
+
+		// generate inserts
+		if (options.tableInserts) {
+			var text = elem.documentation.trim();
+			if (text.length > 0) {
+				codeWriter.writeLine();
+				var insertInto = "INSERT INTO " + table + " (";
+				var colLength = elem.columns.length;
+				elem.columns.forEach(function (col, idx, arr) {
+					var column = self.columnName(col, options);
+					insertInto += column + (idx < (arr.length - 1) ? "," : "");
+				});
+				insertInto += " ) VALUES ( ";
+				// get data
+				var insertLines = text.split("\n");
+				insertLines.forEach(function (e, idx) {
+					var insertIntoLine = insertInto;
+					var insertData = e.split("|");
+					for (var i = 0; i < colLength; i++) {
+						if (insertData[i]) {
+							insertIntoLine += " '" + insertData[i] + "' ";
+						} else {
+							insertIntoLine += " null ";
+						}
+						if (i < (colLength - 1)) {
+							insertIntoLine += ",";
+						}
+					}
+					insertIntoLine += " ); ";
+					codeWriter.writeLine(insertIntoLine);
+					codeWriter.writeLine();
+				});
+				codeWriter.writeLine();
 			}
 		}
 
