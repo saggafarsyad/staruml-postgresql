@@ -104,6 +104,9 @@ It is possible to assist with the code generation through custom tags with speci
 | `column` | `Column` | Override the column name, otherwise given by the `Column` name |
 | `default` | `Column` | Gives the default column value. The string value is taken as is so user needs to be aware of specific database syntax |
 | `enum` | `Column` | Gives the column comma separated enumeration elements |
+| `PROCEDURE` | `Project` | Name for the reference tag that would assign a tag for a schema to be generated as Procedure |
+| `FUNCTION` | `Project` | Name for the reference tag that would assign a tag for a schema to be generated as Function |
+| `TRIGGER` | `Project` | Name for the reference tag that would assign a tag for a schema to be generated as Trigger |
 
 - Note: name normalization consists in replacing the space characters with underscores and converting to lower case.
 
@@ -119,6 +122,13 @@ In order to facilitate the usage of enumeration values, an implicit character va
 
 In the included example, the Employee status field is a (permanent, temporary) enumeration.
 
+## Table / Entity inserts
+
+Use the description / documentation for `Entity` as a storage for the data that you would like to have as inserts.  
+Each insert will contain all the columns into each `INSERT` statement.  
+Use | as separator for each column, if no value is between `NULL` will be used as default value.  
+If number of separators (`|`) is bellow the number of columns, they will be automatically replaced by `NULL` value.  
+
 ## Options
 
 The following preferences are currently available:
@@ -132,6 +142,12 @@ The following preferences are currently available:
 | `Generate Foreign Key Constraints` | Generate foreign key constraints when column reference field is populated |
 | `Use tab` | use `TAB` for indentation |
 | `Indent spaces` | Number of spaces to be used for indentation if tab use is off |
+| `Procedure tag` | Name for the reference tag that would assign a tag for a schema to be generated as Procedure |
+| `Function tag` | Name for the reference tag that would assign a tag for a schema to be generated as Function |
+| `Trigger tag` | Name for the reference tag that would assign a tag for a schema to be generated as Trigger |
+| `Single file` | Generate single file script, rather than multiple |
+| `Drop statements` | Skip or not, drop statements creation |
+| `Table inserts` | Uses entity description/documentation as source to generate insert data |
 
 ## Contributions
 
