@@ -507,7 +507,7 @@ class DDLGenerator {
 			codeWriter.writeLine("ENCODING = '" + options.encoding + "'");
 			codeWriter.writeLine("TABLESPACE = " + options.tablespace);
 
-			var collation = options.dbCollation;
+			var collation = options.collation;
 			if (collation !== "default") {
 				codeWriter.writeLine("LC_COLLATE = '" + collation + "'");
 				codeWriter.writeLine("LC_CTYPE = '" + collation + "'");
