@@ -305,7 +305,7 @@ class DDLGenerator {
 		// Table
 		codeWriter.writeLine("CREATE TABLE " + table + " (");
 		codeWriter.indent();
-		dropWriter.writeLine("DROP TABLE " + table + " CASCADE;");
+		dropWriter.writeLine("DROP TABLE IF EXISTS " + table + " CASCADE;");
 		// drop enums
 		for (var i = 0, len = drop_enums.length; i < len; i++) {
 			dropWriter.writeLine(drop_enums[i]);
@@ -608,10 +608,12 @@ class DDLGenerator {
 			var t = elem.tags[i];
 			if (t && t.kind === type.Tag.TK_REFERENCE && t.reference && t.reference.name == options.function) {
 				app.toast.info("Generate function DDL for " + t.name);
+				functionCodeWriter.writeLine();
+				functionCodeWriter.writeLine();
 				functionCodeWriter.writeLine("CREATE OR REPLACE FUNCTION " + t.name + " ");
-				functionCodeWriter.indent();
+				// functionCodeWriter.indent();
 				functionCodeWriter.writeLine(t.value);
-				functionDropWriter.writeLine("DROP FUNCTION IF EXISTS " + t.name + " CASCADE;");
+				functionDropWriter.writeLine("DROP FUNCTION IF EXISTS " + t.name + " () CASCADE;");
 			}
 		}
 		if (functionCodeWriter.hasContent()) {
@@ -636,10 +638,12 @@ class DDLGenerator {
 			var t = elem.tags[i];
 			if (t && t.kind === type.Tag.TK_REFERENCE && t.reference && t.reference.name == options.procedure) {
 				app.toast.info("Generate procedure DDL for " + t.name);
+				procedureCodeWriter.writeLine();
+				procedureCodeWriter.writeLine();
 				procedureCodeWriter.writeLine("CREATE OR REPLACE PROCEDURE " + t.name + " ");
-				procedureCodeWriter.indent();
+				// procedureCodeWriter.indent();
 				procedureCodeWriter.writeLine(t.value);
-				procedureDropWriter.writeLine("DROP PROCEDURE IF EXISTS " + t.name + " CASCADE;");
+				procedureDropWriter.writeLine("DROP PROCEDURE IF EXISTS " + t.name + " () CASCADE;");
 			}
 		}
 		if (procedureCodeWriter.hasContent()) {
