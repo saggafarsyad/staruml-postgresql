@@ -530,8 +530,9 @@ class DDLGenerator {
 			codeWriter.writeLine("DROP DATABASE " + dbName.toLowerCase() + ";");
 
 			file = path + "/db_drop.sql";
-			fs.writeFileSync(file, codeWriter.getData());
-
+			if (options.dropStatements) {
+				fs.writeFileSync(file, codeWriter.getData());
+			}
 			return true;
 		} else {
 			app.toast.error("No project found, database DDL generator expects a main project");
@@ -590,7 +591,9 @@ class DDLGenerator {
 			var file = path + "/schema_create.sql";
 			fs.writeFileSync(file, codeWriter.getData());
 			file = path + "/schema_drop.sql";
-			fs.writeFileSync(file, dropWriter.getData());
+			if (options.dropStatements) {
+				fs.writeFileSync(file, dropWriter.getData());
+			}
 		}
 
 		return true;
@@ -620,7 +623,9 @@ class DDLGenerator {
 			var file = path + "/" + dataModelName + "_function_create.sql";
 			fs.writeFileSync(file, functionCodeWriter.getData());
 			file = path + "/" + dataModelName + "_function_drop.sql";
-			fs.writeFileSync(file, functionDropWriter.getData());
+			if (options.dropStatements) {
+				fs.writeFileSync(file, functionDropWriter.getData());
+			}
 		}
 
 		return true;
@@ -650,7 +655,9 @@ class DDLGenerator {
 			var file = path + "/" + dataModelName + "_procedure_create.sql";
 			fs.writeFileSync(file, procedureCodeWriter.getData());
 			file = path + "/" + dataModelName + "_procedure_drop.sql";
-			fs.writeFileSync(file, procedureDropWriter.getData());
+			if (options.dropStatements) {
+				fs.writeFileSync(file, procedureDropWriter.getData());
+			}
 		}
 
 		return true;
@@ -685,7 +692,9 @@ class DDLGenerator {
 					var file = path + "/" + dataModelName + "_" + diagName + "_create.sql";
 					fs.writeFileSync(file, codeWriter.getData());
 					file = path + "/" + dataModelName + "_" + diagName + "_drop.sql";
-					fs.writeFileSync(file, dropWriter.getData());
+					if (options.dropStatements) {
+						fs.writeFileSync(file, dropWriter.getData());
+					}
 				}
 			} else if (diagram instanceof type.ERDEntity) {
 				// generate table
@@ -703,7 +712,9 @@ class DDLGenerator {
 			var file = path + "/" + dataModelName + "_table_create.sql";
 			fs.writeFileSync(file, tableCodeWriter.getData());
 			file = path + "/" + dataModelName + "_table_drop.sql";
-			fs.writeFileSync(file, tableDropWriter.getData());
+			if (options.dropStatements) {
+				fs.writeFileSync(file, tableDropWriter.getData());
+			}
 		}
 
 		return true;
