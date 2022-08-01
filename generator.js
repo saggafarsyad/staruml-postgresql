@@ -209,18 +209,18 @@ class DDLGenerator {
 
 	tableName(elem, options) {
 		var tag = codegen.tag("table", elem);
-		var dbName = "";
+		var tableName = "";
 		if (tag) {
-			dbName = tag.value;
+			tableName = tag.value;
 		}
-		if (!dbName) {
-			dbName = codegen.replaceAll(elem.name, " ", "_");
+		if (!tableName) {
+			tableName = codegen.replaceAll(elem.name, " ", "_");
 		}
-		if (!codegen.isValidIdentifier(dbName)) {
-			app.toast.error("Table name is not valid: " + dbName + ", please edit the table tag for " + elem.name);
+		if (!codegen.isValidIdentifier(tableName)) {
+			app.toast.error("Table name is not valid: " + tableName + ", please edit the table tag for " + elem.name);
 			return "";
 		}
-		return dbName.toLowerCase();
+		return `"${tableName}"`;
 	}
 
 	routineName(elem, options) {
@@ -233,23 +233,23 @@ class DDLGenerator {
 			app.toast.error("Routine name is not valid: " + routineName + ", please edit the name for " + elem.name);
 			return "";
 		}
-		return routineName.toLowerCase();
+		return `"${routineName}"`;
 	}
 
 	columnName(elem, options) {
 		var tag = codegen.tag("column", elem);
-		var dbName = "";
+		var columnName = "";
 		if (tag) {
-			dbName = tag.value;
+			columnName = tag.value;
 		}
-		if (!dbName) {
-			dbName = codegen.replaceAll(elem.name, " ", "_");
+		if (!columnName) {
+			columnName = codegen.replaceAll(elem.name, " ", "_");
 		}
-		if (!codegen.isValidIdentifier(dbName)) {
-			app.toast.error("Column name is not valid: " + dbName + ", please edit the column tag for " + elem.name);
+		if (!codegen.isValidIdentifier(columnName)) {
+			app.toast.error("Column name is not valid: " + columnName + ", please edit the column tag for " + elem.name);
 			return "";
 		}
-		return dbName.toLowerCase();
+		return `"${columnName}"`;
 	}
 
 	columnDefault(elem, options) {
