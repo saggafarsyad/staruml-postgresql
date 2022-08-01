@@ -121,7 +121,8 @@ class DDLGenerator {
 			POINT: typeOf("point", noLenFunc),
 			POLYGON: typeOf("polygon", noLenFunc),
 			CIDR: typeOf("cidr", noLenFunc),
-			INET: typeOf("inet", noLenFunc)
+			INET: typeOf("inet", noLenFunc),
+			UUID: typeOf("uuid", noLenFunc)
 		};
 		if (typeof map[elem.type] !== "undefined") {
 			return map[elem.type](elem, options);
