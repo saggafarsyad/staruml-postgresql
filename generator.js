@@ -369,7 +369,7 @@ class DDLGenerator {
 
 				// Generate foreign key
 				let fkName = `FK_${tableName}__${colName}`
-				fkName = fkName.replace('"', "")
+				fkName = fkName.replaceAll('"', "")
 				fkName = `"${fkName}"`
 
 				var refSchemaName = self.schemaName(refTableObj._parent, options);
