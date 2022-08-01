@@ -2,10 +2,10 @@
     "name": "cubica.staruml-postgres",
     "title": "PSQL (PSQL Code Generator)",
     "description": "Generate Postgresql DDL from ERD",
-    "homepage": "https://github.com/florentinvintila/staruml-postgresql",
-    "issues": "https://github.com/florentinvintila/staruml-postgresql/issues",
+    "homepage": "https://github.com/saggafarsyad/staruml-postgresql",
+    "issues": "https://github.com/saggafarsyad/staruml-postgresql/issues",
     "keywords": ["ddl", "erd", "database", "postgresql"],
-    "version": "2.0.5",
+    "version": "2.1.0",
     "author": {
         "name": "Adrian Andrei",
         "email": "adrian.andrei.ca@gmail.com",
