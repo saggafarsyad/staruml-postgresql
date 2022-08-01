@@ -367,14 +367,17 @@ class DDLGenerator {
 					refTableName = prefix + refTableName;
 				}
 
+				// Generate foreign key
+				let fkName = `FK_${tableName}__${colName}`
+				fkName = fkName.replace('"', "")
+				fkName = `"${fkName}"`
+
 				var refSchemaName = self.schemaName(refTableObj._parent, options);
 				refs.push(
 					"ALTER TABLE " +
 					table +
-					" ADD CONSTRAINT FK_" +
-					tableName +
-					"__" +
-					colName +
+					" ADD CONSTRAINT " +
+					fkName +
 					" FOREIGN KEY (" +
 					colName +
 					") REFERENCES " +
